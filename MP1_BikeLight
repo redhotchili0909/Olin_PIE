@@ -1,0 +1,74 @@
+const uint16_t BLINK_INTERVAL = 100;
+const uint16_t CHANGE_INTERVAL = 50;
+
+const uint8_t LED1 =13;
+const uint8_t LED2 = 12;
+const uint8_t LED3 = 11;
+const uint8_t button = 10;
+
+uint32_t blink_time1 = 0;
+uint32_t blink_time2 = 0;
+uint32_t blink_time3 = 0;
+
+int  buttonMode = 0;
+int style = 0;
+
+int ledState = LOW;
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(LED3, OUTPUT);
+  pinMode(button, INPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  uint32_t t;
+  t = millis();
+
+  buttonMode = digitalRead(button);
+  
+  if (buttonMode == HIGH) {
+    style ++;
+  }
+  if (style == 0){
+    digitalWrite(LED1, HIGH);
+    digitalWrite(LED2, HIGH);
+    digitalWrite(LED3, HIGH);
+  }
+  if (style == 1){
+    if (t - blink_time1 >= BLINK_INTERVAL) {
+
+      blink_time1 = t;
+
+      if (ledState == LOW) {
+        ledState = HIGH;
+      } else {
+        ledState = LOW;
+      }
+
+      digitalWrite(LED1, ledState);
+      digitalWrite(LED2, !ledState);
+      digitalWrite(LED3, ledState);
+    }
+  }
+  else if (style == 2){
+    if (t - blink_time2 >= BLINK_INTERVAL) {
+
+      blink_time2 = t;
+
+      if (ledState == LOW) {
+        ledState = HIGH;
+      } else {
+        ledState = LOW;
+      }
+
+      digitalWrite(LED1, !ledState);
+      digitalWrite(LED2, ledState);
+      digitalWrite(LED3, ledState);
+    }
+  }
+}

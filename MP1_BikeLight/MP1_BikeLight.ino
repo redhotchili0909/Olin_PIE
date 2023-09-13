@@ -1,37 +1,45 @@
+//Establishes an initial blink interval of 100 milliseconds, and a change interval of 10 milliseconds that prevents bouncing
 uint16_t BLINK_INTERVAL = 100;
 const uint8_t CHANGE_INTERVAL = 10;
 unsigned long lastDebounce = 0;
+//Programs the LEDs and the button to be connected to various sources on the Arduino
 const uint8_t LED1 =13;
 const uint8_t LED2 = 12;
 const uint8_t LED3 = 11;
 const uint8_t button = 10;
 
+//Establishes blink_time variables for each light
 uint32_t blink_time1 = 0;
 uint32_t blink_time2 = 0;
 uint32_t blink_time3 = 0;
 
+//Sets the initial mode for the button to be LOW, and sets the lights to the first mode
 int  buttonMode = LOW;
 int blink_style = 0;
 
+//Turns all the LEDs to the LOW state
 int ledState = LOW;
 
 int buttonPrevState = LOW;
 
+//Establishes values to be used to track amount of flashes of each light later in the program
 int green_count = 0;
 int yellow_count = 0;
 int red_count = 0;
 
+//Sets up a clock for the program
 uint32_t time = millis();
-// the setup function runs once when you press reset or power the board
+
+// The setup function runs once when you press reset or power the board
 void setup() {
-  // initialize digital LED pins as an output.
+  // Initializes digital LED pins as an output and the button as an input.
   pinMode(LED1, OUTPUT);
   pinMode(LED2, OUTPUT);
   pinMode(LED3, OUTPUT);
   pinMode(button, INPUT);
 }
 
-// the loop function runs over and over again forever
+// The loop function runs indefinitely as the program is active
 void loop() {
   time = millis();
   CheckButtonState();

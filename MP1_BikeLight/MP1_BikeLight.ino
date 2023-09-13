@@ -64,7 +64,7 @@ void loop()
   if (blink_style == 2)
   {
     // Turns some of the lights on alternatingly
-    bounce_on();
+    alternating_flashing();
   }
   if (blink_style == 3)
   {
@@ -74,7 +74,7 @@ void loop()
   if (blink_style == 4)
   {
     // Turns the lights on in a incrementing pattern
-    increment_on();
+    EIEIO();
   }
 }
 
@@ -111,7 +111,7 @@ void blink_on()
   }
 }
 
-void bounce_on()
+void alternating_flashing()
 {
   // Check if we should start blinking the LEDs
   if (time - blink_time >= blink_interval)
@@ -128,7 +128,7 @@ void bounce_on()
   }
 }
 
-void increment_on()
+void EIEIO()
 {
   // Check if we should start blinking the LEDs
   if (time - blink_time >= blink_interval)

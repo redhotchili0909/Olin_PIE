@@ -1,12 +1,14 @@
 clear
 clf
 
+%Load Measured Sensor Data for distances of 5,10,20,30,50 inches
 m_5 = load("Calibration_5in.mat","m");
 m_10 = load("Calibration_10in.mat","m");
 m_20 = load("Calibration_20in.mat","m");
 m_30 = load("Calibration_30in.mat","m");
 m_50 = load("Calibration_50in.mat","m");
 
+%Find the average output for each distance
 avg_05in = mean(m_5.m(:,1));
 avg_10in = mean(m_10.m(:,1));
 avg_20in = mean(m_20.m(:,1));
@@ -36,7 +38,8 @@ plot(test_range,estimate_length)
 xlabel("Sensor Data")
 ylabel("Length")
 legend("Data","Fit","Estimate")
-%%
+hold off
+
 function vals = transfer_equation(x,P)
     x3=P(1);
     x2=P(2);

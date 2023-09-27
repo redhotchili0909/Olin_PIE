@@ -1,10 +1,12 @@
+
 clear s
-freeports = serialportlist("available"); % Shows available serial ports
+freeports = serialportlist("available");
 baudrate = 9600;
+
 % Choose port
 s = serialport(freeports(2) ,baudrate);
-% Getting values from Ardunio
 
+% Getting values from Ardunio
 str = "empty";
 m = [];
 row = 1;
@@ -21,5 +23,5 @@ row = row + 1;
 data_count = data_count +1;
 end
 
-% Save data for each measured length as .mat files
+% Save data as .mat files
 save('Calibration_50in','m');
